@@ -1,329 +1,79 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propart Diagnostic | Sistema Inteligente & Refacciones</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* --- ESTILO GENERAL (MODO DARK/ELEGANCE) --- */
-        :root {
-            --primary: #002060; /* Azul Marino Propart */
-            --accent: #00FFFF; /* Cyan Neón para Tech */
-            --danger: #FF0000; /* Rojo para alertas */
-            --whatsapp: #25D366;
-            --bg-dark: #0a0a0a;
-            --bg-light: #f4f4f4;
-            --text-light: #ffffff;
-            --text-dark: #333333;
-        }
 
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER --- */
-        header {
-            background: linear-gradient(180deg, #001020 0%, #002060 100%);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent);
-            box-shadow: 0 0 20px rgba(0, 32, 96, 0.8);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        .subtitle {
-            font-style: italic;
-            color: #ccc;
-            margin-top: 5px;
-        }
-
-        /* --- HERO SECTION (LA OFERTA) --- */
-        .hero {
-            position: relative;
-            padding: 80px 20px;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* Capa oscura */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--accent);
-        }
-
-        .btn-download {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 18px 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            margin-top: 30px;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px var(--accent);
-            text-transform: uppercase;
-        }
-
-        .btn-download:hover {
-            background-color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 40px white;
-        }
-
-        /* --- SECCIÓN JULSS AI --- */
-        .julss-section {
-            background: linear-gradient(90deg, #000 0%, #001133 100%);
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .julss-avatar {
-            width: 100px;
-            height: 100px;
-            background: white;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--primary);
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-        }
-
-        /* --- TIENDA / REFACCIONARIA (FONDO CLARO) --- */
-        .store-section {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary);
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .shipping-alert {
-            background-color: #e3f2fd;
-            border-left: 5px solid #2196f3;
-            padding: 20px;
-            margin: 0 auto 40px auto;
-            max-width: 800px;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border: 1px solid #ddd;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-img-placeholder {
-            height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .card-body {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            color: var(--danger);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .btn-whatsapp {
-            display: block;
-            width: 100%;
-            padding: 12px 0;
-            background-color: var(--whatsapp);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        
-        .btn-whatsapp:hover {
-            background-color: #1ebc57;
-        }
-
-        .local-btn { background-color: var(--primary); }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: black;
-            color: #666;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.9rem;
-        }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>PROPART DIAGNOSTIC</h1>
-        <div class="subtitle">System Technology & AI | Morelos, MX</div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h2>TU TALLER, NIVEL DIOS.</h2>
-            <p style="font-size: 1.3rem;">Diagramas, Osciloscopio 3D, Diesel y Asistencia IA en tu bolsillo.</p>
-            
-            <div style="margin: 30px 0;">
-                <span style="background: rgba(0,255,255,0.2); padding: 5px 15px; border-radius: 20px; border: 1px solid var(--accent); color: var(--accent);">
-                    🚀 VERSIÓN LIVE DISPONIBLE
-                </span>
-            </div>
-
-            <a href="#" class="btn-download">DESCARGAR PRUEBA (3 DÍAS GRATIS)</a>
-            <p style="margin-top: 20px; opacity: 0.8;">Disponible para Android & PC</p>
-        </div>
-    </section>
-
-    <section class="julss-section">
-        <div class="julss-avatar">AI</div>
-        <h2 style="color: var(--accent); margin-top: 15px;">"OYE JULSS..."</h2>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-            No estás solo. Soy <strong>Julss</strong>, tu Asistente Especializado.
-            Pregúntame por pines de ECU, torque de cabezas o códigos de falla.
-            <br><br>
-            <em>"Julss, ¿cuál es el pin de inyectores del Jetta A4?"</em>
-        </p>
-    </section>
-
-    <section class="store-section">
+<section class="store-section">
         <h2 class="section-title">🛒 REFACCIONARIA PROPART</h2>
         
         <div class="shipping-alert">
             <p style="font-size: 1.1rem; color: var(--primary); font-weight: bold;">📍 ¿ESTÁS EN MORELOS?</p>
             <p>Recoge en nuestra sucursal o entregas locales SIN COSTO EXTRA.</p>
             <hr style="border: 0; border-top: 1px solid #bbdefb; margin: 10px 0;">
-            <p style="font-size: 0.9rem; color: #555;">📦 <strong>Envíos Nacionales:</strong> Costo extra por paquetería (FedEx/Castores/Correos). Cotizamos al momento.</p>
+            <p style="font-size: 0.9rem; color: #555;">📦 <strong>Envíos Nacionales:</strong> Costo extra por paquetería. Cotizamos al momento.</p>
         </div>
 
         <div class="grid-container">
             
             <div class="card">
-                <div class="card-img-placeholder">
-                    [FOTO ALTERNADOR]
+                <div class="card-img-placeholder" style="background: #e8eaf6; color: #002060; font-size: 3rem;">
+                    ⚡
                 </div>
                 <div class="card-body">
                     <h3 style="color: var(--primary);">Alternadores y Marchas</h3>
-                    <p>Bosch, Valeo, Hitachi. Nuevos y reconstruidos. Garantizados.</p>
-                    <div class="price">Desde $1,800</div>
-                    <a href="https://wa.me/5217776838196?text=Hola%20Millan,%20me%20interesa%20un%20Alternador.%20Soy%20de%20[TU_CIUDAD],%20cotizame%20con%20envio." class="btn-whatsapp">
-                        🚚 COTIZAR CON ENVÍO
+                    <p>Bosch, Valeo, Hitachi, Mitsubishi. Nuevos y Reconstruidos.</p>
+                    <div class="price">Cotizar</div>
+                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20me%20interesa%20un%20Alternador/Marcha.%20Soy%20de%20[CIUDAD]" class="btn-whatsapp">
+                        🚚 COTIZAR AQUÍ
                     </a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-img-placeholder">
-                    [FOTO SENSORES]
+                <div class="card-img-placeholder" style="background: #e3f2fd; color: #0277bd; font-size: 3rem;">
+                    🔌
                 </div>
                 <div class="card-body">
                     <h3 style="color: var(--primary);">Sensores (CKP, CMP, MAF)</h3>
-                    <p>Para VW, Nissan, Chevrolet. Calidad OEM. Detectados por Julss.</p>
-                    <div class="price">Desde $450</div>
-                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20necesito%20un%20Sensor.%20Paso%20a%20recoger%20en%20tienda." class="btn-whatsapp local-btn">
-                        🏪 RECOGER EN TIENDA
+                    <p>Sensores de Cigüeñal, Árbol de levas, Oxígeno y Flujo de aire. Calidad OEM.</p>
+                    <div class="price">Cotizar</div>
+                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20busco%20un%20Sensor.%20Soy%20de%20[CIUDAD]" class="btn-whatsapp">
+                        🔌 PREGUNTAR DISPONIBILIDAD
                     </a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-img-placeholder">
-                    [FOTO COMPUTADORAS]
+                <div class="card-img-placeholder" style="background: #fff3e0; color: #ef6c00; font-size: 3rem;">
+                    💻
                 </div>
                 <div class="card-body">
                     <h3 style="color: var(--primary);">Computadoras & Módulos</h3>
-                    <p>Venta, Clonación y Reprogramación Diesel/Gasolina.</p>
-                    <div class="price">Cotizar Servicio</div>
-                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20tengo%20una%20computadora%20dañada,%20necesito%20reparacion%20o%20cambio." class="btn-whatsapp">
-                        🔧 COTIZAR SERVICIO
+                    <p>ECUs de Motor (PCM), Carrocería (BCM) y Tableros. Diesel y Gasolina.</p>
+                    <div class="price">Servicio Especializado</div>
+                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20tengo%20problemas%20con%20una%20Computadora/Modulo.%20Necesito%20ayuda." class="btn-whatsapp">
+                        🔧 COTIZAR REPARACIÓN
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-placeholder" style="background: #f3e5f5; color: #7b1fa2; font-size: 3rem;">
+                    💡
+                </div>
+                <div class="card-body">
+                    <h3 style="color: var(--primary);">Iluminación LED</h3>
+                    <p>Kits de focos H4, H7, H11. Barras y auxiliares de alta potencia.</p>
+                    <div class="price">Desde $400</div>
+                    <a href="https://wa.me/521XXXXXXXXXX?text=Hola%20Millan,%20quiero%20luces%20LED.%20Soy%20de%20[CIUDAD]" class="btn-whatsapp">
+                        💡 VER CATÁLOGO
                     </a>
                 </div>
             </div>
 
         </div>
 
-        <div style="text-align: center; margin-top: 50px;">
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">¿No encuentras la pieza?</p>
-            <p>Tómale una foto a la pieza dañada y mándamela.</p>
-            <a href="https://wa.me/521XXXXXXXXXX?text=Hola,%20te%20mando%20foto%20de%20la%20pieza%20que%20necesito%20para%20que%20me%20la%20consigas." class="btn-download" style="font-size: 1rem; padding: 15px 30px;">
+        <div style="text-align: center; margin-top: 50px; background: white; padding: 30px; border-radius: 10px; border: 2px dashed #002060;">
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary);">¿Buscas otra refacción?</p>
+            <p>Manejamos todo el catálogo eléctrico. Si no está arriba, ¡pregúntanos!</p>
+            <a href="https://wa.me/521XXXXXXXXXX?text=Hola,%20busco%20una%20refacción%20que%20no%20veo%20en%20la%20lista.%20Te%20mando%20info..." class="btn-download" style="font-size: 1rem; padding: 15px 30px; background-color: var(--primary); color: white;">
                 📷 MANDAR FOTO DE MUESTRA
             </a>
         </div>
     </section>
-
-    <footer>
-        <p>© 2026 PROPART DIAGNOSTIC. Desarrollado por Millán & Julss Systems.</p>
-        <p>Xochitepec, Morelos, México.</p>
-    </footer>
-
-</body>
-</html>
