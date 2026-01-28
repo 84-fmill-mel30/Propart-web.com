@@ -25,7 +25,7 @@ Es la herramienta definitiva para el mecánico moderno en México y Latinoaméri
 
 No necesitas instalar nada para ver la presentación. Accede a nuestra plataforma web oficial:
 
-👉 **[VER PÁGINA OFICIAL AQUÍ](https://millan-propart.github.io/propart-web)** 👈
+👉 **[VER PÁGINA OFICIAL AQUÍ](https://84-fmill-mel30.github.io/Propart-web.com/)** 👈
 *(Asegúrate de cambiar este link por el real de tu GitHub Pages)*
 
 ---
