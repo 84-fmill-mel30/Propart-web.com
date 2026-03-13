@@ -585,12 +585,12 @@ for(let i=0;i<25;i++){
 // ── SLIDE ENGINE ──
 const slides=document.querySelectorAll('.slide');
 let current=0;
-const TIMING=[4500,6000,5000,6000,6500,5500,6000,0]; // ms per slide
+const TIMING=[45000,60000,50000,6000,6500,5500,60000,0]; // ms per slide
 
 function showSlide(n){
   slides[current].classList.remove('active');
   slides[current].classList.add('out');
-  setTimeout(()=>slides[current].classList.remove('out'),2000);
+  setTimeout(()=>{slides[current].classList.remove('out'),600 ms)};,
   current=n;
   // Clone node to retrigger CSS animations
   const old=slides[current];
@@ -603,7 +603,7 @@ function showSlide(n){
   document.getElementById('slide-counter').textContent=
     String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
   // Update progress
-  document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('progress').style.width=((current+1)/slides.length*80)+'%';
 }
 
 function nextSlide(){
