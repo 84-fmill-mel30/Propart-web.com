@@ -577,7 +577,7 @@ for(let i=0;i<25;i++){
     background:${Math.random()>.7?'#F5A623':'#00D4FF'};
     opacity:${Math.random()*.4+.1};
     animation-duration:${8+Math.random()*12}s;
-    animation-delay:${Math.random()*80}s;
+    animation-delay:${Math.random()*.80}s;
   `;
   stage.appendChild(p);
 }
@@ -585,12 +585,12 @@ for(let i=0;i<25;i++){
 // ── SLIDE ENGINE ──
 const slides=document.querySelectorAll('.slide');
 let current=0;
-const TIMING=[4000,6000,7000,8000,7500,5000,4000,0]; // ms per slide
+const TIMING=[6000,3000,4000,7000,4000,4000,4000,0]; // ms per slide
 
 function showSlide(n){
   slides[current].classList.remove('active');
   slides[current].classList.add('out');
-  setTimeout(()=>slides[current].classList.remove('out'),700);
+  setTimeout(()=>slides[current].classList.remove('out'),300);
   current=n;
   // Clone node to retrigger CSS animations
   const old=slides[current];
