@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPart Spot - Standalone</title>
+    <style>
+        /* Estilos base para que no dependa de fuentes externas */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            width: 100%; height: 100vh; overflow: hidden; 
+            background: #020609; 
+            font-family: 'Arial Black', sans-serif; /* Fuente estándar para que no falle sin internet */
+        }
+
+        #stage { width: 100%; height: 100%; position: relative; }
+
+        /* Capas de las pantallas */
+        .slide {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transform: scale(1.1);
+            transition: all 0.8s ease;
+            z-index: 5; padding: 20px; text-align: center;
+        }
+
+        .slide.active { opacity: 1; visibility: visible; transform: scale(1); z-index: 10; }
+        .slide.out { opacity: 0; visibility: hidden; transform: scale(0.9); z-index: 1; }
+
+        /* Estética ProPart */
+        .brand { font-size: 60px; color: #F5A623; letter-spacing: 5px; text-shadow: 0 0 20px rgba(245,166,35,0.5); }
+        .cyan { color: #00D4FF; }
+        
+        .video-container {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            z-index: -1; background: #000;
+        }
+        
+        video { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+
+        /* Controles */
+        #ui { position: fixed; bottom: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; z-index: 100; }
+        .btn { background: #F5A623; color: black; border: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="stage">
+        <div class="slide active">
+            <div class="brand">PROPART V7</div>
+            <p style="color:white; margin-top:10px;">DIAGNÓSTICO PROFESIONAL</p>
+        </div>
+
+        <div class="slide">
+            <div class="video-container">
+                <video id="promoVideo" loop muted playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="brand" style="font-size: 40px;">LA MEJOR <span class="cyan">HERRAMIENTA</span></div>
+            <p style="color:white;">Todo el taller en tu mano</p>
+        </div>
+
+        <div class="slide">
+            <div class="brand">777-683-8196</div>
+            <p style="color:#00D4FF; font-size: 20px;">FM095329@gmail.com</p>
+            <div style="margin-top:20px; color:white; border: 1px solid #F5A623; padding: 10px;">ALPUYECA, MORELOS</div>
+        </div>
+    </div>
+
+    <div id="ui">
+        <div style="color:#F5A623" id="counter">1 / 3</div>
+        <button class="btn" onclick="nextSlide()">SIGUIENTE →</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const v = document.getElementById('promoVideo');
+
+        function nextSlide() {
+            slides[current].classList.remove('active');
+            slides[current].classList.add('out');
+            
+            // Pausar video si no es la slide del video
+            if(v) v.pause();
+
+            current = (current + 1) % slides.length;
+            
+            slides[current].classList.remove('out');
+            slides[current].classList.add('active');
+
+            // Si llegamos a la pantalla 2 (índice 1), arranca el video
+            if(current === 1 && v) {
+                v.play();
+            }
+
+            document.getElementById('counter').textContent = (current + 1) + " / " + slides.length;
+        }
+
+        // Cambio automático cada 6 segundos
+        setInterval(nextSlide, 6000);
+    </script>
+</body>
+</html>
