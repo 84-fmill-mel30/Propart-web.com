@@ -570,26 +570,27 @@ const stage=document.getElementById('particles');
 for(let i=0;i<25;i++){
   const p=document.createElement('div');
   p.className='particle';
-  const size=Math.random()*5+1;
+  const size=Math.random()*3+1;
   p.style.cssText=`
     width:${size}px;height:${size}px;
     left:${Math.random()*100}%;
     background:${Math.random()>.7?'#F5A623':'#00D4FF'};
-    opacity:${Math.random()*.2+.1};
-    animation-duration:${5+Math.random()*8}s;
-    animation-delay:${Math.random()*5}s;
+    opacity:${Math.random()*.4+.1};
+    animation-duration:${8+Math.random()*12}s;
+    animation-delay:${Math.random()*8}s;
   `;
   stage.appendChild(p);
 }
 
-// ── SLIDE ENGINE ──
+// ── SLIDE ENGINE ──4
 const slides=document.querySelectorAll('.slide');
 let current=0;
-const TIMING = [60000, 5000, 5000, 5000, 5500, 5500, 5000, 0];
+const TIMING = [6000,5000,5000,5000,5500,5500,5000,0];
 function showSlide(n){
   slides[current].classList.remove('active');
   slides[current].classList.add('out');
-  setTimeout(()=>slides[current].classList.remove('out'),600);
+  setTimeout(()=>{
+    slides[current].classList.remove('out'),2000)};
   current=n;
   // Clone node to retrigger CSS animations
   const old=slides[current];
@@ -606,7 +607,8 @@ function showSlide(n){
 }
 
 function nextSlide(){
-  if(current>=slides.length-1){showSlide(0);return;}
+  if(current>=slides.length-1){showSlide(0);retur
+    n;}
   showSlide(current+1);
 }
 
