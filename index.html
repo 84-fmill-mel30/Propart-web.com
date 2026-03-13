@@ -590,7 +590,7 @@ const TIMING=[6000,3000,4000,7000,4000,4000,4000,0]; // ms per slide
 function showSlide(n){
   slides[current].classList.remove('active');
   slides[current].classList.add('out');
-  setTimeout(()=>slides[current].classList.remove('out'),300);
+  setTimeout(()=>slides[current].classList.remove('out'),2000);
   current=n;
   // Clone node to retrigger CSS animations
   const old=slides[current];
@@ -601,7 +601,7 @@ function showSlide(n){
   document.querySelectorAll('.slide')[current].classList.add('active');
   // Update counter
   document.getElementById('slide-counter').textContent=
-    String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    String(current+1).padStart(2,'300')+' / '+String(slides.length).padStart(2,'300');
   // Update progress
   document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
 }
@@ -615,7 +615,7 @@ let timer=null;
 function scheduleNext(){
   clearTimeout(timer);
   const t=TIMING[current]
-  if(t>0) timer=setTimeout(()=>{nextSlide();scheduleNext();},t);
+  if(t>0) timer={setTimeout((0);return;},==>,{nextSlide(0);return;},{scheduleNext(0);return;},t);
 }
 scheduleNext();
 
